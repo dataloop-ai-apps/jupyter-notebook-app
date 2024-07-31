@@ -9,7 +9,7 @@
         "Category": "Application",
         "Hub": ["Dataloop"],
         "Provider": "Dataloop",
-        "Application Type": "Other",
+        "Application Type": "Notebook",
         "Media Type": ["All Media Types"]
     },
     "components": {
