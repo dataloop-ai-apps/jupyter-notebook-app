@@ -1,0 +1,95 @@
+{
+    "version": "0.0.1",
+    "name": "jupyter-notebook",
+    "displayName": "Jupyter Notebooks",
+    "description": "Jupyter Notebook",
+    "scope": "project",
+
+    "attributes": {
+        "Category": "Onboarding",
+        "Onboarding Tab": "Data Management",
+        "Onboarding Card": "Programmatically Connect Your Data"
+    },
+    "components": {
+        "panels": [
+            {
+                "name": "notebooks",
+                "minRole": "annotator",
+                "supportedSlots": [
+                    {
+                        "type": "floatingWindow",
+                        "configuration": {
+                            "layout": {
+                                "width": 455,
+                                "height": 340,
+                                "resizable": true,
+                                "backgroundColor": "dl-color-studio-panel",
+                                "position": {
+                                    "x": 775,
+                                    "y": 55
+                                }
+                            },
+                            "routes": [
+                                "datasetBrowser",
+                                "dataManagement",
+                                "project"
+                            ]
+                        }
+                    }
+                ],
+                "icon": "icon-dl-sdk-documentation",
+                "metadata": {},
+                "defaultSettings": {},
+                "conditions": {}
+            }
+        ],
+        "modules": [
+            {
+                "name": "jupyter-notebook",
+                "entryPoint": "functions/main.py",
+                "className": "Runner",
+                "initInputs": [],
+                "config": {
+                    "isCustomServer": true
+                },
+                "functions": [
+                    {
+                        "name": "run",
+                        "output": [],
+                        "input": []
+                    }
+                ]
+            }
+        ],
+        "services": [
+            {
+                "name": "jupyter-notebook",
+                "panelNames": ["notebooks"],
+                "moduleName": "jupyter-notebook",
+                "initParams": {},
+                "packageName": "default-package",
+                "packageRevision": "latest",
+                "runtime": {
+                    "podType": "regular-s",
+                    "numReplicas": 1,
+                    "concurrency": 10,
+                    "pyPackages": {},
+                    "singleAgent": false,
+                    "runnerImage": "gcr.io/viewo-g/piper/agent/jupyter-server:0.1.51",
+                    "autoscaler": {
+                        "type": "rabbitmq",
+                        "minReplicas": 1,
+                        "maxReplicas": 1,
+                        "queueLength": 1
+                    },
+                    "preemptible": false,
+                    "executionTimeout": 3600,
+                    "drainTime": 600,
+                    "onReset": "failed",
+                    "runExecutionAsProcess": false
+                },
+                "maxAttempts": 3
+            }
+        ]
+    }
+}

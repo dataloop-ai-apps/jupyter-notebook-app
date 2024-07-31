@@ -1,0 +1,38 @@
+{
+  "annotations": [
+    {
+      "type": "box",
+      "label": "bird",
+      "coordinates": [
+        {
+          "x": 244.230224609375,
+          "y": 263.06805419921875,
+          "z": 0
+        },
+        {
+          "x": 1198.5179443359375,
+          "y": 930.14404296875,
+          "z": 0
+        }
+      ],
+      "metadata": {
+        "system": {
+          "automated": true,
+          "coordinateVersion": "v2",
+          "model": {
+            "confidence": 0.8813337087631226,
+            "model_id": "65f871ba1d0d2738dde0add1",
+            "name": "yolov8"
+          }
+        },
+        "user": {
+          "model": {
+            "confidence": 0.8813337087631226,
+            "model_id": "65f871ba1d0d2738dde0add1",
+            "name": "yolov8"
+          }
+        }
+      }
+    }
+  ]
+}
