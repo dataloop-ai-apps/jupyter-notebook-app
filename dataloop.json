@@ -6,9 +6,11 @@
     "scope": "project",
 
     "attributes": {
-        "Category": "Onboarding",
-        "Onboarding Tab": "Data Management",
-        "Onboarding Card": "Programmatically Connect Your Data"
+        "Category": "Application",
+        "Hub": ["Dataloop"],
+        "Provider": "Dataloop",
+        "Application Type": "Other",
+        "Media Type": ["All Media Types"]
     },
     "components": {
         "panels": [
