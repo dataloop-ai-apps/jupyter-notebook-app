@@ -1,12 +1,16 @@
 {
     "version": "0.0.1",
-    "name": "jupyter-notebook",
-    "displayName": "Jupyter Notebooks",
-    "description": "Jupyter Notebook",
-    "scope": "project",
+    "name": "jupyter-notebook-onboarding",
+    "displayName": "Jupyter Notebooks for Onboarding",
+    "description": "Jupyter Notebooks for Onboarding",
+    "scope": "public",
+    "codebase": {
+        "type": "git",
+        "gitUrl": "https://github.com/dataloop-ai-apps/jupyter-notebook-app.git",
+        "gitTag": "0.0.1"
+    },
 
     "attributes": {
-        "Category": "Application",
         "Hub": ["Dataloop"],
         "Provider": "Dataloop",
         "Application Type": "Notebook",
@@ -47,7 +51,7 @@
         ],
         "modules": [
             {
-                "name": "jupyter-notebook",
+                "name": "jupyter-notebook-onboarding",
                 "entryPoint": "functions/main.py",
                 "className": "Runner",
                 "initInputs": [],
@@ -65,9 +69,9 @@
         ],
         "services": [
             {
-                "name": "jupyter-notebook",
+                "name": "jupyter-notebook-onboarding",
                 "panelNames": ["notebooks"],
-                "moduleName": "jupyter-notebook",
+                "moduleName": "jupyter-notebook-onboarding",
                 "initParams": {},
                 "packageName": "default-package",
                 "packageRevision": "latest",
