@@ -13,7 +13,7 @@
     "attributes": {
         "Hub": ["Dataloop"],
         "Provider": "Dataloop",
-        "Application Type": "Notebook",
+        "Category": "Notebook",
         "Media Type": ["All Media Types"]
     },
     "components": {
