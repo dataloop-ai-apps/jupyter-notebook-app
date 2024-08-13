@@ -9,12 +9,15 @@
         "gitUrl": "https://github.com/dataloop-ai-apps/jupyter-notebook-app.git",
         "gitTag": "0.0.1"
     },
-
     "attributes": {
-        "Hub": ["Dataloop"],
+        "Hub": [
+            "Dataloop"
+        ],
         "Provider": "Dataloop",
         "Application Type": "Notebook",
-        "Media Type": ["All Media Types"]
+        "Media Type": [
+            "All Media Types"
+        ]
     },
     "components": {
         "panels": [
@@ -70,7 +73,9 @@
         "services": [
             {
                 "name": "jupyter-notebook-onboarding",
-                "panelNames": ["notebooks"],
+                "panelNames": [
+                    "notebooks"
+                ],
                 "moduleName": "jupyter-notebook-onboarding",
                 "initParams": {},
                 "packageName": "default-package",
