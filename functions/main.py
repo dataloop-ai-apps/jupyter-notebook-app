@@ -1,8 +1,7 @@
-import shutil
 import subprocess
 import logging
+import shutil
 import select
-import stat
 import os
 
 """
@@ -21,11 +20,12 @@ class Runner:
         dst = '/tmp/app'
         if os.path.exists(dst):
             shutil.rmtree(dst)
-        print('copyyyy')
+        print('copying files to /tmp/app')
         shutil.copytree(src=src, dst=dst)
-        print('change dir')
+        print('changing dir')
         os.chdir('/tmp/app')
         os.chmod('/tmp/app/start.sh', 0o0777)
+        print('running start.sh')
         proc = subprocess.Popen('./start.sh', stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, text=True)
         try:
             while True:
