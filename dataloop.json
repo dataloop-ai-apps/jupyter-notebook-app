@@ -2,7 +2,7 @@
     "version": "0.0.1",
     "name": "jupyter-notebook-onboarding",
     "displayName": "Jupyter Notebooks for Onboarding",
-    "description": "Jupyter Notebooks for Onboarding",
+    "description": "This application provides a seamless way to learn how to use our SDK to perform various actions programmatically, which you can also accomplish through the Dataloop UI.",
     "scope": "public",
     "codebase": {
         "type": "git",
@@ -10,14 +10,10 @@
         "gitTag": "0.0.1"
     },
     "attributes": {
-        "Hub": [
-            "Dataloop"
-        ],
+        "Hub": ["Dataloop"],
         "Provider": "Dataloop",
         "Application Type": "Notebook",
-        "Media Type": [
-            "All Media Types"
-        ]
+        "Media Type": ["All Media Types"]
     },
     "components": {
         "panels": [
@@ -73,9 +69,7 @@
         "services": [
             {
                 "name": "jupyter-notebook-onboarding",
-                "panelNames": [
-                    "notebooks"
-                ],
+                "panelNames": ["notebooks"],
                 "moduleName": "jupyter-notebook-onboarding",
                 "initParams": {},
                 "packageName": "default-package",
