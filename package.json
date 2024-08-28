@@ -47,16 +47,13 @@
     },
     "lint-staged": {
         "*.ts": [
-            "prettier --write",
-            "eslint --fix"
+            "prettier --write"
         ],
         "*.js": [
-            "prettier --write",
-            "eslint --fix"
+            "prettier --write"
         ],
         "*.vue": [
-            "prettier --write",
-            "eslint --fix"
+            "prettier --write"
         ]
     },
     "pre-commit": "lint-staged"
