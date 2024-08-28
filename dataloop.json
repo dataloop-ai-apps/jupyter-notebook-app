@@ -96,10 +96,5 @@
                 "maxAttempts": 3
             }
         ]
-    },
-    "dependencies": [
-        {
-            "name": "ml-compare-example"
-        }
-    ]
+    }
 }
