@@ -83,9 +83,11 @@ const loadiFrameWithContext = async () => {
         if (notebookPath.value === null) {
             return
         }
-        contentIframe.value.onload = () => {
+        contentIframe.value.onload = async () => {
             // Once the iframe is loaded, set isReady to true
             isReady.value = true
+            await HandleCheck()
+            // listen to click events on the iframe
         }
         contentIframe.value.src = `/jupyter/notebooks/${notebookPath.value}?kernel_name=python3`
     } catch (e) {
@@ -135,12 +137,33 @@ const prepareAndLoadFrame = async () => {
 }
 
 const saveNotebook = async () => {
-    const saveButton = contentIframe.value.contentWindow.document
+    const saveButton = contentIframe.value?.contentWindow.document
         .getElementById('save-notbook')
         .getElementsByClassName('btn')
-
     if (saveButton && saveButton.length > 0) {
         ;(saveButton[0] as HTMLElement).click()
+    }
+}
+
+const HandleCheck = async (attempts = 15) => {
+    if (attempts <= 0) {
+        console.log('refresh button not found')
+        return
+    }
+    const refresh_button =
+        contentIframe.value.contentWindow.document.getElementById(
+            'RefreshButtonJupyter'
+        )
+
+    if (refresh_button) {
+        refresh_button.addEventListener('click', () => {
+            window.dl.sendEvent({ name: DlFrameEvent.REFRESH_DATA })
+        })
+        console.log('refresh button found')
+    } else {
+        setTimeout(() => {
+            HandleCheck(attempts - 1)
+        }, 1000)
     }
 }
 onMounted(() => {
