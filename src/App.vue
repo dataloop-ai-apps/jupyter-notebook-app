@@ -137,11 +137,15 @@ const prepareAndLoadFrame = async () => {
 }
 
 const saveNotebook = async () => {
-    const saveButton = contentIframe.value?.contentWindow.document
-        .getElementById('save-notbook')
-        .getElementsByClassName('btn')
-    if (saveButton && saveButton.length > 0) {
-        ;(saveButton[0] as HTMLElement).click()
+    try {
+        const saveButton = contentIframe.value?.contentWindow.document
+            .getElementById('save-notbook')
+            .getElementsByClassName('btn')
+        if (saveButton && saveButton.length > 0) {
+            ;(saveButton[0] as HTMLElement).click()
+        }
+    } catch (e) {
+        console.error('Failed saving notebook', e)
     }
 }
 
