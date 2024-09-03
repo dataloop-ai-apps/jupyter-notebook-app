@@ -122,6 +122,9 @@ const prepareAndLoadFrame = async () => {
             route.value === 'dataManagement'
         ) {
             notebookPath.value = 'app/notebooks/manage_datasets.ipynb'
+        } 
+        else if (route.value === 'pipelines') {
+            notebookPath.value = 'app/notebooks/annotation_platform.ipynb'
         }
         else if (route.value == 'modelManagement') {
             notebookPath.value = 'app/notebooks/model_management.ipynb'
