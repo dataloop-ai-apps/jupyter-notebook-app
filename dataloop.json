@@ -25,19 +25,20 @@
                         "type": "floatingWindow",
                         "configuration": {
                             "layout": {
-                                "width": 455,
-                                "height": 340,
                                 "resizable": true,
                                 "backgroundColor": "dl-color-studio-panel",
-                                "position": {
-                                    "x": 775,
-                                    "y": 55
+
+                                "mode": {
+                                    "type": "fixed"
                                 }
                             },
                             "routes": [
                                 "datasetBrowser",
                                 "dataManagement",
-                                "project"
+                                "project",
+                                "modelManagement",
+                                "pipelines",
+                                "pipelinesEditor"
                             ]
                         }
                     }

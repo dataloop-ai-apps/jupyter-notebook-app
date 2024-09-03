@@ -116,20 +116,19 @@ const prepareAndLoadFrame = async () => {
     try {
         if (route.value === 'datasetBrowser') {
             notebookPath.value = 'app/notebooks/upload_and_manage_items.ipynb'
-        } 
-        else if (
+        } else if (
             route.value === 'project' ||
             route.value === 'dataManagement'
         ) {
             notebookPath.value = 'app/notebooks/manage_datasets.ipynb'
-        } 
-        else if (route.value === 'pipelines') {
+        } else if (
+            route.value === 'pipelines' ||
+            route.value === 'pipelinesEditor'
+        ) {
             notebookPath.value = 'app/notebooks/annotation_platform.ipynb'
-        }
-        else if (route.value == 'modelManagement') {
+        } else if (route.value == 'modelManagement') {
             notebookPath.value = 'app/notebooks/model_management.ipynb'
-        }
-        else {
+        } else {
             notebookPath.value = null
         }
         nextTick(() => {
@@ -162,14 +161,15 @@ const HandleCheck = async (attempts = 15) => {
         console.log('refresh button not found')
         return
     }
-    const refresh_button =
-        contentIframe.value.contentWindow.document.getElementById(
-            'RefreshButtonJupyter'
+    const refreshButtons =
+        contentIframe.value.contentWindow.document.querySelectorAll(
+            '[id^="RefreshButtonJupyter"]'
         )
-
-    if (refresh_button) {
-        refresh_button.addEventListener('click', () => {
-            window.dl.sendEvent({ name: DlFrameEvent.REFRESH_DATA })
+    if (refreshButtons && refreshButtons.length > 0) {
+        refreshButtons.forEach((refresh_button) => {
+            refresh_button.addEventListener('click', () => {
+                window.dl.sendEvent({ name: DlFrameEvent.REFRESH_DATA })
+            })
         })
         console.log('refresh button found')
     } else {
