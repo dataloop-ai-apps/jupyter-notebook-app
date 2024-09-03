@@ -126,6 +126,9 @@ const prepareAndLoadFrame = async () => {
         else if (route.value === 'pipelines') {
             notebookPath.value = 'app/notebooks/annotation_platform.ipynb'
         }
+        else if (route.value == 'modelManagement') {
+            notebookPath.value = 'app/notebooks/model_management.ipynb'
+        }
         else {
             notebookPath.value = null
         }
@@ -142,11 +145,15 @@ const prepareAndLoadFrame = async () => {
 }
 
 const saveNotebook = async () => {
-    const saveButton = contentIframe.value?.contentWindow.document
-        .getElementById('save-notbook')
-        .getElementsByClassName('btn')
-    if (saveButton && saveButton.length > 0) {
-        ;(saveButton[0] as HTMLElement).click()
+    try {
+        const saveButton = contentIframe.value?.contentWindow.document
+            .getElementById('save-notbook')
+            .getElementsByClassName('btn')
+        if (saveButton && saveButton.length > 0) {
+            ;(saveButton[0] as HTMLElement).click()
+        }
+    } catch (e) {
+        console.error('Failed saving notebook', e)
     }
 }
 

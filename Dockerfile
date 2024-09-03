@@ -27,9 +27,6 @@ USER root
 # Install node and npm (you can specify a specific version of node if needed)
 RUN apt update && apt install -y nodejs npm
 
-# Update npm to the latest version
-RUN npm install -g npm@latest
-
 # Switch back to jovyan user
 USER jovyan
 
