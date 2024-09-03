@@ -116,12 +116,17 @@ const prepareAndLoadFrame = async () => {
     try {
         if (route.value === 'datasetBrowser') {
             notebookPath.value = 'app/notebooks/upload_and_manage_items.ipynb'
-        } else if (
+        } 
+        else if (
             route.value === 'project' ||
             route.value === 'dataManagement'
         ) {
             notebookPath.value = 'app/notebooks/manage_datasets.ipynb'
-        } else {
+        }
+        else if (route.value == 'modelManagement') {
+            notebookPath.value = 'app/notebooks/model_management.ipynb'
+        }
+        else {
             notebookPath.value = null
         }
         nextTick(() => {
