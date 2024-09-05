@@ -27,7 +27,7 @@
                             "layout": {
                                 "resizable": true,
                                 "backgroundColor": "dl-color-studio-panel",
-
+                                "onInvoke": true,
                                 "mode": {
                                     "type": "fixed"
                                 }
