@@ -52,3 +52,5 @@ Thumbs.db
 /*.ipynb
 
 /.ipynb_checkpoints
+
+user_notebooks/

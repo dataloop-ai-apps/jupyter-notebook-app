@@ -4,6 +4,7 @@ import re
 import os
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
+import shutil
 
 app = FastAPI()
 
@@ -22,6 +23,14 @@ def process_notebook(context: dict, notebook_path: str):
     """
     Process the input notebook to replace variable values and save to the output path.
     """
+
+    if not os.path.exists(notebook_path):
+        os.makedirs(os.path.dirname(notebook_path), exist_ok=True)
+        # extract the notebook name
+        notebook_name = notebook_path.split('/')[-1]
+        # copy the notebook to the notebooks folder
+        shutil.copyfile(f'/tmp/app/notebooks/{notebook_name}', notebook_path)
+
     for variable_name, new_value in context.items():
         # Regular expression for finding the variable assignment
         # This regex handles simple assignments. It may need to be adjusted for complex scenarios.

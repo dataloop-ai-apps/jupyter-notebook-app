@@ -23,6 +23,7 @@ import { DlEvent, DlFrameEvent, ThemeType } from '@dataloop-ai/jssdk'
 import { ref, onMounted, computed, nextTick } from 'vue-demi'
 
 const contentIframe = ref<HTMLIFrameElement | null>(null)
+const userFolderName = ref<string>('')
 const isReady = ref<boolean>(false)
 const currentTheme = ref<ThemeType>(ThemeType.LIGHT)
 const operationRunning = ref<boolean>(true)
@@ -36,7 +37,7 @@ const showNotebook = computed<boolean>(() => {
 })
 const frameLoadFailed = ref<boolean>(false)
 const route = ref<string>('datasetBrowser')
-const notebookPath = ref<string>('app/notebooks/upload_and_manage_items.ipynb')
+const notebookPath = ref<string>('')
 const isDark = computed<boolean>(() => {
     return currentTheme.value === ThemeType.DARK
 })
@@ -114,20 +115,21 @@ const getContext = async () => {
 }
 const prepareAndLoadFrame = async () => {
     try {
+        const main_path = 'app/user_notebooks/' + userFolderName.value + '/'
         if (route.value === 'datasetBrowser') {
-            notebookPath.value = 'app/notebooks/upload_and_manage_items.ipynb'
+            notebookPath.value = main_path + 'upload_and_manage_items.ipynb'
         } else if (
             route.value === 'project' ||
             route.value === 'dataManagement'
         ) {
-            notebookPath.value = 'app/notebooks/manage_datasets.ipynb'
+            notebookPath.value = main_path + 'manage_datasets.ipynb'
         } else if (
             route.value === 'pipelines' ||
             route.value === 'pipelinesEditor'
         ) {
-            notebookPath.value = 'app/notebooks/annotation_platform.ipynb'
+            notebookPath.value = main_path + 'annotation_platform.ipynb'
         } else if (route.value == 'modelManagement') {
-            notebookPath.value = 'app/notebooks/model_management.ipynb'
+            notebookPath.value = main_path + 'model_management.ipynb'
         } else {
             notebookPath.value = null
         }
@@ -140,6 +142,19 @@ const prepareAndLoadFrame = async () => {
         })
     } catch (e) {
         console.error('Failed preparing frame', e)
+    }
+}
+
+const createUserFolderName = (email: string): string => {
+    try {
+        // Replace invalid characters with underscores
+        return email
+            .replace(/[^a-zA-Z0-9]/g, '_') // Replace non-alphanumeric characters with _
+            .replace(/_{2,}/g, '_') // Replace multiple consecutive underscores with a single one
+            .replace(/^_+|_+$/g, '') // Trim leading or trailing underscores
+    } catch (e) {
+        console.error('Failed to create user folder name', e)
+        return 'default_user_folder'
     }
 }
 
@@ -181,6 +196,7 @@ const HandleCheck = async (attempts = 15) => {
 onMounted(() => {
     window.dl.on(DlEvent.READY, async () => {
         const settings = await window.dl.settings.get()
+        userFolderName.value = createUserFolderName(settings.currentUser)
         // @ts-ignore
         route.value = settings.currentRoute
         currentTheme.value = settings.theme
