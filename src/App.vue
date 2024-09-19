@@ -1,7 +1,7 @@
 <template>
     <DlThemeProvider :is-dark="isDark">
         <div v-if="!isReady" class="loading-spinner">
-            <DlSpinner text="Loading App..." size="128px" />
+            <dl-spinner type="grid" text="Loading..." />
         </div>
         <div v-if="showNotebook">
             <div class="container">
