@@ -85,6 +85,8 @@
                     "runnerImage": "gcr.io/viewo-g/piper/agent/jupyter-server:0.1.51",
                     "autoscaler": {
                         "type": "rabbitmq",
+                        "cooldownPeriod": 480,
+                        "pollingInterval": 120,
                         "minReplicas": 1,
                         "maxReplicas": 1,
                         "queueLength": 1
