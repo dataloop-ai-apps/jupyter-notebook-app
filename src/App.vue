@@ -1,5 +1,5 @@
 <template>
-    <DlThemeProvider :is-dark="isDark">
+    <DlThemeProvider :is-dark="isDark" class="main-background">
         <div v-if="!isReady" class="loading-spinner">
             <dl-spinner type="grid" text="Loading..." />
         </div>
@@ -229,6 +229,10 @@ onMounted(() => {
 #iframe1 {
     width: 100vw;
     height: 100vh;
+}
+
+.main-background {
+    background-color: var(--dl-color-body-background);
 }
 
 .container {
