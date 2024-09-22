@@ -25,7 +25,7 @@
                         "type": "floatingWindow",
                         "configuration": {
                             "layout": {
-                                "width": 800,
+                                "width": 700,
                                 "resizable": true,
                                 "backgroundColor": "dl-color-studio-panel",
                                 "onInvoke": true,

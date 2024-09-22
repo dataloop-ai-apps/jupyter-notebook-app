@@ -127,7 +127,7 @@ const prepareAndLoadFrame = async () => {
             route.value === 'pipelines' ||
             route.value === 'pipelinesEditor'
         ) {
-            notebookPath.value = main_path + 'annotation_platform.ipynb'
+            notebookPath.value = main_path + 'pipeline.ipynb'
         } else if (route.value == 'modelManagement') {
             notebookPath.value = main_path + 'model_management.ipynb'
         } else {
