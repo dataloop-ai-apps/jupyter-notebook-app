@@ -1,5 +1,5 @@
 {
-    "version": "0.0.17",
+    "version": "0.0.18",
     "name": "jupyter-notebook-onboarding",
     "displayName": "Jupyter Notebooks for Onboarding",
     "description": "This application provides a seamless way to learn how to use our SDK to perform various actions programmatically, which you can also accomplish through the Dataloop UI.",
@@ -7,7 +7,7 @@
     "codebase": {
         "type": "git",
         "gitUrl": "https://github.com/dataloop-ai-apps/jupyter-notebook-app.git",
-        "gitTag": "0.0.17"
+        "gitTag": "0.0.18"
     },
     "attributes": {
         "Hub": ["Dataloop"],
