@@ -78,18 +78,15 @@
                 "packageRevision": "latest",
                 "runtime": {
                     "podType": "regular-s",
-                    "numReplicas": 1,
                     "concurrency": 10,
-                    "pyPackages": {},
-                    "singleAgent": false,
                     "runnerImage": "gcr.io/viewo-g/piper/agent/jupyter-server:0.1.51",
                     "autoscaler": {
-                        "type": "rabbitmq",
-                        "cooldownPeriod": 480,
-                        "pollingInterval": 120,
-                        "minReplicas": 1,
-                        "maxReplicas": 1,
-                        "queueLength": 1
+                        "type": "rps",
+                        "cooldownPeriod": 600,
+                        "threshold": 1,
+                        "rateSeconds": 120,
+                        "minReplicas": 0,
+                        "maxReplicas": 1
                     },
                     "preemptible": false,
                     "executionTimeout": 3600,
