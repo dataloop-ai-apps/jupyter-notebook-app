@@ -3,7 +3,7 @@ FROM python:3.10-slim
 
 # Install necessary system dependencies
 RUN apt update -y && apt install -y --no-install-recommends \
-    nginx build-essential libssl-dev sudo \
+    nginx nodejs npm build-essential libssl-dev sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the sudoers.d directory and set permissions for the jovyan user
@@ -15,6 +15,14 @@ RUN mkdir -p /etc/sudoers.d && \
 # Install Jupyter Lab and necessary Python packages
 RUN python3 -m pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir jupyterlab tornado==6.4 requests==2.31.0
+
+# Install Vue CLI globally if needed for the Vue app
+RUN npm install -g @vue/cli
+
+# Generate SSL certificate
+WORKDIR /tmp
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout local.dataloop.ai.key -out local.dataloop.ai.crt -subj "/CN=local.dataloop.ai"
+RUN cp local.dataloop.ai.crt /etc/ssl/certs/ && cp local.dataloop.ai.key /etc/ssl/private/
 
 # Switch to jovyan user
 USER jovyan
