@@ -1,41 +1,45 @@
-FROM quay.io/jupyter/datascience-notebook:4d70cf8da953
-USER root
-RUN apt update -y && apt install -y git nginx
+# Use a lightweight Python base image
+FROM python:3.10-slim
 
-RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/jovyan && \
+# Install necessary system dependencies
+RUN apt update -y && apt install -y --no-install-recommends \
+    git nginx nodejs npm curl build-essential libssl-dev sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create the sudoers.d directory and set permissions for the jovyan user
+RUN mkdir -p /etc/sudoers.d && \
+    adduser --disabled-password --gecos '' jovyan && \
+    echo "jovyan ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/jovyan && \
     chmod 0440 /etc/sudoers.d/jovyan
 
+# Install Jupyter Lab and necessary Python packages
+RUN python3 -m pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir jupyterlab tornado==6.4 requests==2.31.0
 
+# Install Vue CLI globally if needed for the Vue app
+RUN npm install -g @vue/cli
+
+# Generate SSL certificate
 WORKDIR /tmp
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout local.dataloop.ai.key -out local.dataloop.ai.crt -subj "/CN=local.dataloop.ai"
 RUN cp local.dataloop.ai.crt /etc/ssl/certs/ && cp local.dataloop.ai.key /etc/ssl/private/
 
+# Switch to jovyan user
 USER jovyan
 ENV HOME=/tmp
 
-COPY . /tmp/app
+# Copy your application files
+COPY ./functions /tmp/app/functions
+COPY ./start_dev.sh /tmp/app
+COPY ./start.sh /tmp/app
+COPY ./panels /tmp/app/panels
+COPY ./requirements.txt /tmp/app
+
 WORKDIR /tmp/app
-RUN sudo chmod 777 -R /tmp
-RUN git clone https://github.com/dataloop-ai/dtlpy-documentation.git /tmp/dtlpy-documentation
 
-RUN python3 -m pip install -U pip
-RUN pip3 install --user --upgrade -r requirements.txt
-
-# Switch back to root user to update npm
-USER root
-
-# Install node and npm (you can specify a specific version of node if needed)
-RUN apt update && apt install -y nodejs npm
-
-# Switch back to jovyan user
+# Install Python dependencies for your app
+RUN pip install --user --upgrade -r requirements.txt
 USER jovyan
 
-
-# docker build --no-cache -t gcr.io/viewo-g/piper/agent/jupyter-server:0.1.51 -f ./Dockerfile .
-# docker push gcr.io/viewo-g/piper/agent/jupyter-server:0.1.51
-
-# docker run -p 3004:3000  -it -v E:\Applications\jupyter-notebook-app:/tmp/app gcr.io/viewo-g/piper/agent/jupyter-server:0.1.51 bash
-
-# docker run -p 3004:3000  -it gcr.io/viewo-g/piper/agent/jupyter-server:0.1.50 bash
 
 

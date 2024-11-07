@@ -3,7 +3,6 @@ jupyterlab<4
 notebook==6.4.12
 uvicorn
 fastapi
-dtlpy
 
 
 #qtconsole
