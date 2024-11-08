@@ -28,7 +28,7 @@ COPY ./panels /tmp/app/panels
 COPY ./requirements.txt /tmp/app
 
 WORKDIR /tmp/app
-
+RUN sudo chmod 777 -R /tmp
 # Install Python dependencies for your app
 RUN pip install --user --upgrade -r requirements.txt
 USER jovyan
