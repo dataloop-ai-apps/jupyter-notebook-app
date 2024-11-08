@@ -5,7 +5,7 @@ USER root
 
 # Install Nginx and clean up apt cache to reduce image size
 RUN apt-get update && \
-    apt-get install -y nginx && \
+    apt-get install -y nginx curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
