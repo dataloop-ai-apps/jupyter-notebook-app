@@ -4,7 +4,7 @@ FROM jupyter/base-notebook:latest
 USER root
 
 RUN apt-get update && \
-    apt-get install -y nginx curl gcc python3-dev && \
+    apt-get install -y nginx curl gcc python3-dev git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
