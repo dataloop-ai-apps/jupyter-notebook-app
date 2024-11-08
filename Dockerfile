@@ -3,9 +3,8 @@ FROM jupyter/base-notebook:latest
 
 USER root
 
-# Install Nginx and clean up apt cache to reduce image size
 RUN apt-get update && \
-    apt-get install -y nginx curl && \
+    apt-get install -y nginx curl gcc python3-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
