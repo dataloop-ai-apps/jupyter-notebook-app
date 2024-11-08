@@ -82,7 +82,7 @@
                     "runnerImage": "gcr.io/viewo-g/piper/agent/jupyter-server:2.0.7",
                     "autoscaler": {
                         "type": "rps",
-                        "cooldownPeriod": 600,
+                        "cooldownPeriod": 1200,
                         "threshold": 1,
                         "rateSeconds": 120,
                         "minReplicas": 0,
