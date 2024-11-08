@@ -79,7 +79,7 @@
                 "runtime": {
                     "podType": "regular-s",
                     "concurrency": 10,
-                    "runnerImage": "gcr.io/viewo-g/piper/agent/jupyter-server:2.0.7",
+                    "runnerImage": "gcr.io/viewo-g/piper/agent/jupyter-server:2.0.8",
                     "autoscaler": {
                         "type": "rps",
                         "cooldownPeriod": 1200,
