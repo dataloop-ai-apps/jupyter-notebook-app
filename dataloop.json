@@ -12,6 +12,7 @@
     "attributes": {
         "Hub": ["Dataloop"],
         "Provider": "Dataloop",
+        "Category": "Application",
         "Application Type": "Notebook",
         "Media Type": ["All Media Types"]
     },
