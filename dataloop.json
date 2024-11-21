@@ -1,14 +1,9 @@
 {
     "version": "0.0.21",
-    "name": "jupyter-notebook-onboarding",
-    "displayName": "Jupyter Notebooks for Onboarding",
+    "name": "jupyter-notebook-onboarding-test",
+    "displayName": "Jupyter Notebooks for Onboarding Test",
     "description": "This application provides a seamless way to learn how to use our SDK to perform various actions programmatically, which you can also accomplish through the Dataloop UI.",
-    "scope": "public",
-    "codebase": {
-        "type": "git",
-        "gitUrl": "https://github.com/dataloop-ai-apps/jupyter-notebook-app.git",
-        "gitTag": "0.0.21"
-    },
+    "scope": "project",
     "attributes": {
         "Hub": ["Dataloop"],
         "Provider": "Dataloop",
@@ -19,7 +14,57 @@
     "components": {
         "panels": [
             {
-                "name": "notebooks",
+                "name": "models",
+                "minRole": "annotator",
+                "supportedSlots": [
+                    {
+                        "type": "floatingWindow",
+                        "configuration": {
+                            "layout": {
+                                "width": 700,
+                                "resizable": true,
+                                "backgroundColor": "dl-color-studio-panel",
+                                "onInvoke": true,
+                                "mode": {
+                                    "type": "fixed"
+                                }
+                            },
+                            "routes": ["modelManagement"]
+                        }
+                    }
+                ],
+                "icon": "icon-dl-sdk-documentation",
+                "metadata": {},
+                "defaultSettings": {},
+                "conditions": {}
+            },
+            {
+                "name": "pipeline",
+                "minRole": "annotator",
+                "supportedSlots": [
+                    {
+                        "type": "floatingWindow",
+                        "configuration": {
+                            "layout": {
+                                "width": 700,
+                                "resizable": true,
+                                "backgroundColor": "dl-color-studio-panel",
+                                "onInvoke": true,
+                                "mode": {
+                                    "type": "fixed"
+                                }
+                            },
+                            "routes": ["pipelines", "pipelinesEditor"]
+                        }
+                    }
+                ],
+                "icon": "icon-dl-sdk-documentation",
+                "metadata": {},
+                "defaultSettings": {},
+                "conditions": {}
+            },
+            {
+                "name": "data",
                 "minRole": "annotator",
                 "supportedSlots": [
                     {
@@ -37,10 +82,7 @@
                             "routes": [
                                 "datasetBrowser",
                                 "dataManagement",
-                                "project",
-                                "modelManagement",
-                                "pipelines",
-                                "pipelinesEditor"
+                                "project"
                             ]
                         }
                     }
@@ -53,7 +95,7 @@
         ],
         "modules": [
             {
-                "name": "jupyter-notebook-onboarding",
+                "name": "jupyter-notebook-module",
                 "entryPoint": "functions/main.py",
                 "className": "Runner",
                 "initInputs": [],
@@ -71,9 +113,9 @@
         ],
         "services": [
             {
-                "name": "jupyter-notebook-onboarding",
-                "panelNames": ["notebooks"],
-                "moduleName": "jupyter-notebook-onboarding",
+                "name": "jupyter-notebook-serv",
+                "panelNames": ["models", "pipeline", "data"],
+                "moduleName": "jupyter-notebook-module",
                 "initParams": {},
                 "packageName": "default-package",
                 "packageRevision": "latest",

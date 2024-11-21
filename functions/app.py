@@ -71,6 +71,3 @@ def replace(context: Context, ):
     notebook_path = os.path.join(os.path.expanduser("~"), context.pop('notebook_path', ''))
     process_notebook(context=context, notebook_path=notebook_path)
     return {"status": "success"}
-
-
-app.mount("/notebooks", StaticFiles(directory="/tmp/app/panels/notebooks", html=True), name="notebooks")
