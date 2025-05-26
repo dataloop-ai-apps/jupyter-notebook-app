@@ -137,11 +137,11 @@
                         "maxReplicas": 1
                     },
                     "preemptible": false,
-                    "executionTimeout": 3600,
                     "drainTime": 600,
                     "onReset": "failed",
                     "runExecutionAsProcess": false
                 },
+                "executionTimeout": 3600,
                 "maxAttempts": 3
             }
         ]
