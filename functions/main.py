@@ -24,9 +24,9 @@ class Runner:
         shutil.copytree(src=src, dst=dst)
         print('changing dir')
         os.chdir('/tmp/app')
-        os.chmod('/tmp/app/start.sh', 0o0777)
+        os.chmod('/tmp/app/start.sh', 0o0755)
         print('running start.sh')
-        proc = subprocess.Popen('./start.sh', stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, text=True)
+        proc = subprocess.Popen(['/bin/bash', './start.sh'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         try:
             while True:
                 # Use select to wait for output
