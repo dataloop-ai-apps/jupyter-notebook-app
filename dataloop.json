@@ -2,7 +2,7 @@
     "version": "0.0.24",
     "name": "jupyter-notebook-onboarding",
     "displayName": "Jupyter Notebooks for Onboarding",
-    "description": "This application provides a seamless way to learn how to use our SDK to perform various actions programmatically, which you can also accomplish through the Dataloop UI.",
+    "description": "This application provides a seamless way to learn how to use our SDK to perform various actions programmatically, which you can also accomplish through the DDOE UI.",
     "scope": "public",
     "codebase": {
         "type": "git",
@@ -10,8 +10,8 @@
         "gitTag": "0.0.24"
     },
     "attributes": {
-        "Hub": ["Dataloop"],
-        "Provider": "Dataloop",
+        "Hub": ["DDOE"],
+        "Provider": "DDOE",
         "Category": "Application",
         "Application Type": "Notebook",
         "Media Type": ["All Media Types"]
